@@ -953,6 +953,27 @@ class FastViT(nn.Module):
         return cls_out
 
 
+image_classification_model_urls = {
+    "fastvit_t8": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_models/fastvit_t8.pth.tar",
+    "fastvit_t12": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_models/fastvit_t12.pth.tar",
+    "fastvit_s12": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_models/fastvit_s12.pth.tar",
+    "fastvit_sa12": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_models/fastvit_sa12.pth.tar",
+    "fastvit_sa24": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_models/fastvit_sa24.pth.tar",
+    "fastvit_sa36": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_models/fastvit_sa36.pth.tar",
+    "fastvit_ma36": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_models/fastvit_ma36.pth.tar",
+}
+
+image_classification_distilled_model_urls = {
+    "fastvit_t8": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_distilled_models/fastvit_t8.pth.tar",
+    "fastvit_t12": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_distilled_models/fastvit_t12.pth.tar",
+    "fastvit_s12": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_distilled_models/fastvit_s12.pth.tar",
+    "fastvit_sa12": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_distilled_models/fastvit_sa12.pth.tar",
+    "fastvit_sa24": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_distilled_models/fastvit_sa24.pth.tar",
+    "fastvit_sa36": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_distilled_models/fastvit_sa36.pth.tar",
+    "fastvit_ma36": "https://docs-assets.developer.apple.com/ml-research/models/fastvit/image_classification_distilled_models/fastvit_ma36.pth.tar",
+}
+
+
 @register_model
 def fastvit_t8(pretrained=False, **kwargs):
     """Instantiate FastViT-T8 model variant."""
@@ -971,7 +992,9 @@ def fastvit_t8(pretrained=False, **kwargs):
     )
     model.default_cfg = default_cfgs["fastvit_t"]
     if pretrained:
-        raise ValueError("Functionality not implemented.")
+        url = image_classification_distilled_model_urls['fastvit_t8']
+        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
+        model.load_state_dict(checkpoint["state_dict"])
     return model
 
 
@@ -993,7 +1016,9 @@ def fastvit_t12(pretrained=False, **kwargs):
     )
     model.default_cfg = default_cfgs["fastvit_t"]
     if pretrained:
-        raise ValueError("Functionality not implemented.")
+        url = image_classification_distilled_model_urls['fastvit_t12']
+        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
+        model.load_state_dict(checkpoint["state_dict"])
     return model
 
 
@@ -1015,7 +1040,9 @@ def fastvit_s12(pretrained=False, **kwargs):
     )
     model.default_cfg = default_cfgs["fastvit_s"]
     if pretrained:
-        raise ValueError("Functionality not implemented.")
+        url = image_classification_distilled_model_urls['fastvit_s12']
+        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
+        model.load_state_dict(checkpoint["state_dict"])
     return model
 
 
@@ -1039,7 +1066,9 @@ def fastvit_sa12(pretrained=False, **kwargs):
     )
     model.default_cfg = default_cfgs["fastvit_s"]
     if pretrained:
-        raise ValueError("Functionality not implemented.")
+        url = image_classification_distilled_model_urls['fastvit_sa12']
+        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
+        model.load_state_dict(checkpoint["state_dict"])
     return model
 
 
@@ -1063,7 +1092,9 @@ def fastvit_sa24(pretrained=False, **kwargs):
     )
     model.default_cfg = default_cfgs["fastvit_s"]
     if pretrained:
-        raise ValueError("Functionality not implemented.")
+        url = image_classification_distilled_model_urls['fastvit_sa24']
+        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
+        model.load_state_dict(checkpoint["state_dict"])
     return model
 
 
@@ -1088,7 +1119,9 @@ def fastvit_sa36(pretrained=False, **kwargs):
     )
     model.default_cfg = default_cfgs["fastvit_m"]
     if pretrained:
-        raise ValueError("Functionality not implemented.")
+        url = image_classification_distilled_model_urls['fastvit_sa36']
+        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
+        model.load_state_dict(checkpoint["state_dict"])
     return model
 
 
@@ -1113,5 +1146,7 @@ def fastvit_ma36(pretrained=False, **kwargs):
     )
     model.default_cfg = default_cfgs["fastvit_m"]
     if pretrained:
-        raise ValueError("Functionality not implemented.")
+        url = image_classification_distilled_model_urls['fastvit_ma36']
+        checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True)
+        model.load_state_dict(checkpoint["state_dict"])
     return model
